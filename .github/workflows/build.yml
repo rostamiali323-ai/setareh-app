@@ -8,13 +8,13 @@ on:
 jobs:
   build-android:
     runs-on: ubuntu-latest
+    container:
+      image: kivy/buildozer:latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build with Buildozer
-        uses: kivy/buildozer@master
-        with:
-          command: android debug
+      - name: Build APK
+        run: buildozer android debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
